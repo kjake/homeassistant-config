@@ -1,6 +1,7 @@
-
 .DS_Store
 device_tracker/ping.yaml
 device_tracker/pfsense.yaml
 sensor/plex.yaml
 secrets.yaml
+__pycache__/
+*.py[cod]
