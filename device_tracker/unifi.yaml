@@ -1,0 +1,11 @@
+- platform: unifi
+  host: !secret unifi_host
+  port: 8443
+  detection_time: 60
+  interval_seconds: 10
+  consider_home: 90
+  username: !secret unifi_user
+  password: !secret unifi_pass
+  new_device_defaults:
+    track_new_devices: true
+    hide_if_away: false

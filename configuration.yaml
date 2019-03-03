@@ -1,0 +1,208 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+  themes: !include themes.yaml
+  javascript_version: latest
+
+# Enables configuration UI
+config:
+
+# Enables Person component/manager
+person:
+
+# Logs!
+logger:
+  default: warn
+  logs:
+    homeassistant.components.mqtt: debug
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Allow diagnosing system problems
+system_health:
+
+
+# webserver settings needed for SSL
+http:
+  base_url: !secret http_url
+  server_port: 443
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  ip_ban_enabled: true
+  login_attempts_threshold: 9
+  cors_allowed_origins:
+    - https://google.com
+    - https://www.home-assistant.io
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 192.168.1.0/24
+    - fd00::/8
+
+# Add left-hand menu iframes
+panel_iframe:
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret ide_url
+  nodered:
+    title: Node-RED
+    icon: mdi:sitemap
+    url: !secret red_url
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: !secret tasmo_url
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - plex_mediaserver
+    - apple_tv
+    - roku
+#  enable:
+#    - homekit
+
+# Enable Zeroconf/Avahi/Bonjour
+# https://www.home-assistant.io/components/zeroconf/
+zeroconf:
+
+# Notification group setup
+notify:
+  - name: phones
+    platform: group
+    services:
+      - service: ios_kevin_iphone
+
+###
+### Local network devices
+###
+
+# Devices need registration to Eufy Cloud, but can be controlled locally
+# https://www.home-assistant.io/components/eufy/
+eufy:
+  devices:
+    - address: !secret spm1_ip
+      access_token: !secret spm1_key
+      type: T1202
+      name: Smart Plug Mini
+    - address: !secret spm2_ip
+      access_token: !secret spm2_key
+      type: T1202
+      name: Smart Plug Mini
+      
+# Hunter Douglas Shades, controls local hub
+# https://www.home-assistant.io/components/scene.hunterdouglas_powerview/
+scene:
+  platform: hunterdouglas_powerview
+  address: !secret powerview_ip
+  
+
+###
+### Cloud Services
+###
+
+# Speedtest.net
+# https://www.home-assistant.io/components/speedtestdotnet/
+speedtestdotnet:
+  scan_interval:
+    minutes: 5
+  server_id: !secret speedtest_id
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+# Rachio Sprinkler Controller
+# https://www.home-assistant.io/components/rachio/
+# api.rach.io
+rachio:
+  api_key: !secret rachio_api
+  manual_run_mins: 10
+
+# Garage Door Integration
+# https://www.home-assistant.io/components/cover.myq/
+# myqexternal.myqdevice.com
+cover:
+  - platform: myq
+    username: !secret myq_user
+    password: !secret myq_pass
+    type: liftmaster
+
+# Echo Devices as Media Player
+# https://community.home-assistant.io/t/echo-devices-alexa-as-media-player-testers-needed/58639/201
+# amazon.com
+alexa_media:
+  accounts:
+    - email: !secret alexa_email
+      password: !secret alexa_password
+      url: amazon.com
+
+    
+# Ecobee Integration
+# https://www.home-assistant.io/components/ecobee/
+# api.ecobee.com
+ecobee:
+  api_key: !secret ecobee_key
+
+###
+### Includes Section
+###
+
+# Include Dirs
+#binary_sensor: !include_dir_merge_list binary_sensor
+device_tracker: !include_dir_merge_list device_tracker
+sensor: !include_dir_merge_list sensor
+#switch: !include_dir_merge_list switch
+
+# Include Files
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+ios: !include ios.yaml
+input_boolean: !include input_boolean.yaml
+
+
+# Lovelace custom card checker/updater
+# https://github.com/custom-components/custom_updater/wiki/Installation
+custom_updater:
+  track:
+    - components
+    - python_scripts
+    - cards
+  component_urls:
+    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
+    - https://raw.githubusercontent.com/keatontaylor/custom_components/master/custom_components.json
+  python_script_urls:
+    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/python_scripts.json
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/simple-weather-card/master/tracker.json

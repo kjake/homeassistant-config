@@ -1,0 +1,11 @@
+  - platform: mqtt
+    name: "Porch/Garage"
+    state_topic: "stat/front_exterior/POWER"
+    command_topic: "cmnd/front_exterior/POWER"
+    availability_topic: "tele/front_exterior/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 2
+    retain: false
