@@ -1,0 +1,17 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red-contrib-alexa-local": "~0.3.24",
+        "node-red-contrib-better-sonos": "~0.1.21",
+        "node-red-contrib-eztimer": "~1.0.5",
+        "node-red-contrib-hold": "~1.0.0",
+        "node-red-contrib-light-scheduler": "0.0.11",
+        "node-red-contrib-nighttime": "~1.0.35",
+        "node-red-contrib-scheduler": "~1.0.5",
+        "node-red-contrib-sonospollytts": "~1.0.2",
+        "node-red-contrib-timerswitch": "~1.2.3"
+    }
+}

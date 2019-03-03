@@ -51,6 +51,7 @@ group.automation_on_demand:
   friendly_name: Automation
 switch.front_exterior:
   friendly_name: Porch/Garage
+  icon: mdi:lightbulb
 binary_sensor.main_floor_occupancy:
   friendly_name: Mud Room
 binary_sensor.office_occupancy:
@@ -69,3 +70,7 @@ sensor.speedtest_upload:
   friendly_name: Upload
 sensor.speedtest_ping:
   friendly_name: Ping
+switch.smart_plug_mini:
+  icon: mdi:power-socket-us
+switch.smart_plug_mini_2:
+  icon: mdi:power-socket-us
