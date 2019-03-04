@@ -10,3 +10,7 @@
   andrea_home:
     name: Andrea Home
     icon: mdi:human-female
+  brian_school:
+    name: Brian School
+    icon: mdi:human-child
+    initial: on
