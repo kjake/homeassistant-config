@@ -1,0 +1,230 @@
+resources:
+  - type: module
+    url: /customcards/github/custom-cards/tracker-card.js?track=true
+  - type: module
+    url: /local/mini-media-player-bundle.js?v=1.0.2
+  - type: module
+    url: /local/mini-graph-card-bundle.js?v=0.3.0
+  - type: module
+    url: /local/simple-weather-card.bundle.js?v=0.1.0
+title: Home
+views:
+  - badges: []
+    cards:
+      - entity: weather.main_floor
+        name: at home
+        type: 'custom:simple-weather-card'
+      - entities:
+          - entity: input_boolean.house_guests
+          - entity: input_boolean.andrea_home
+          - entity: input_boolean.kevin_home
+          - entity: input_boolean.home_occupied
+        show_header_toggle: false
+        title: People Presence
+        type: entities
+      - entities:
+          - entity: scene.41101
+          - entity: scene.48427
+          - entity: scene.8286
+          - entity: scene.5638
+          - entity: scene.34860
+        show_header_toggle: false
+        title: Family Room Shades
+        type: entities
+      - entities:
+          - entity: cover.main_opener
+          - entity: cover.third_stall_opener
+        show_header_toggle: false
+        title: Garage
+        type: entities
+      - entities:
+          - entity: binary_sensor.brian_bedroom_occupancy
+          - entity: binary_sensor.family_room_occupancy
+          - entity: binary_sensor.master_bedroom_occupancy
+          - entity: binary_sensor.main_floor_occupancy
+          - entity: binary_sensor.office_occupancy
+        show_header_toggle: false
+        title: Room Presence
+        type: entities
+      - type: entities
+        entities:
+          - entity: input_boolean.brian_school
+        show_header_toggle: false
+        title: Automations
+    icon: 'mdi:home'
+    path: home
+    title: Home
+  - cards:
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: |
+              ## Lights
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                font_size: 75
+                line_width: 8
+                entity: switch.family_room_standing_lamp
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                font_size: 75
+                line_width: 8
+                entity: switch.front_exterior
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+    badges: []
+    icon: 'mdi:lightbulb-on'
+    path: lighting
+    title: Lighting
+  - badges: []
+    cards:
+      - entity: climate.main_floor
+        name: Main Floor
+        type: thermostat
+      - entities:
+          - entity: sensor.main_floor_temperature
+          - entity: sensor.family_room_temperature
+          - entity: sensor.office_temperature
+          - entity: sensor.master_bedroom_temperature
+          - entity: sensor.brian_bedroom_temperature
+        title: Climate
+        type: 'custom:mini-graph-card'
+      - entities:
+          - entity: sensor.dark_sky_temperature
+          - entity: sensor.dark_sky_apparent_temperature
+          - entity: sensor.dark_sky_dew_point
+        title: Weather
+        type: 'custom:mini-graph-card'
+      - entities:
+          - entity: sun.sun
+          - entity: sensor.moon
+          - entity: sensor.dark_sky_minutely_summary
+          - entity: sensor.dark_sky_humidity
+          - entity: sensor.dark_sky_wind_speed
+          - entity: sensor.dark_sky_precip_probability
+          - entity: sensor.dark_sky_cloud_coverage
+        show_header_toggle: false
+        title: Weather
+        type: entities
+    icon: 'mdi:thermometer'
+    path: climate
+    title: Climate
+  - badges: []
+    cards:
+      - entity: media_player.sonos_family_room
+        sonos:
+          entities:
+            - entity_id: media_player.sonos_basement
+              name: Basement
+            - entity_id: media_player.sonos_master_bedroom
+              name: Master Bedroom
+            - entity_id: media_player.sonos_master_bath
+              name: Master Bath
+            - entity_id: media_player.sonos_garage
+              name: Garage
+          show_group_count: true
+        type: 'custom:mini-media-player'
+      - entity: media_player.sonos_master_bedroom
+        sonos:
+          entities:
+            - entity_id: media_player.sonos_basement
+              name: Basement
+            - entity_id: media_player.sonos_family_room
+              name: Family Room
+            - entity_id: media_player.sonos_master_bath
+              name: Master Bath
+            - entity_id: media_player.sonos_garage
+              name: Garage
+          show_group_count: true
+        type: 'custom:mini-media-player'
+      - entity: media_player.sonos_garage
+        sonos:
+          entities:
+            - entity_id: media_player.sonos_basement
+              name: Basement
+            - entity_id: media_player.sonos_family_room
+              name: Family Room
+            - entity_id: media_player.sonos_master_bath
+              name: Master Bath
+            - entity_id: media_player.sonos_master_bedroom
+              name: Master Bedroom
+          show_group_count: true
+        type: 'custom:mini-media-player'
+      - entity: media_player.sonos_basement
+        sonos:
+          entities:
+            - entity_id: media_player.sonos_family_room
+              name: Family Room
+            - entity_id: media_player.sonos_master_bath
+              name: Master Bath
+            - entity_id: media_player.sonos_master_bedroom
+              name: Master Bedroom
+            - entity_id: media_player.sonos_garage
+              name: Garage
+          show_group_count: true
+        type: 'custom:mini-media-player'
+      - entity: media_player.sonos_master_bath
+        sonos:
+          entities:
+            - entity_id: media_player.sonos_basement
+              name: Basement
+            - entity_id: media_player.sonos_family_room
+              name: Family Room
+            - entity_id: media_player.sonos_master_bedroom
+              name: Master Bedroom
+            - entity_id: media_player.sonos_garage
+              name: Garage
+          show_group_count: true
+        type: 'custom:mini-media-player'
+    icon: 'mdi:speaker'
+    path: sonos
+    title: Sonos
+  - badges: []
+    cards:
+      - entities:
+          - entity: switch.back_yard
+          - entity: switch.bush_zone
+          - entity: switch.house_side
+          - entity: switch.garage_side
+          - entity: switch.front_right
+          - entity: switch.front_left_road
+          - entity: switch.front_left_drive
+          - entity: binary_sensor.rachio_e49812_online
+        show_header_toggle: false
+        title: Zones
+        type: entities
+    icon: 'mdi:water-pump'
+    path: irrigation
+    title: Irrigation
+  - badges: []
+    cards:
+      - cards:
+          - entities:
+              - sensor.speedtest_ping
+            font_size: 75
+            line_width: 8
+            type: 'custom:mini-graph-card'
+          - entities:
+              - sensor.speedtest_upload
+            font_size: 75
+            line_width: 8
+            type: 'custom:mini-graph-card'
+          - entities:
+              - sensor.speedtest_download
+            font_size: 75
+            line_width: 8
+            type: 'custom:mini-graph-card'
+        type: horizontal-stack
+      - type: 'custom:tracker-card'
+    icon: 'mdi:settings'
+    path: sysinfo
+    title: System Info
+
