@@ -70,7 +70,7 @@ sensor.speedtest_upload:
   friendly_name: Upload
 sensor.speedtest_ping:
   friendly_name: Ping
-switch.smart_plug_mini:
+switch.family_room_standing_lamp:
   icon: mdi:power-socket-us
 switch.smart_plug_mini_2:
   icon: mdi:power-socket-us
