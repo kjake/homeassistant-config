@@ -27,8 +27,8 @@ person:
 # Logs!
 logger:
   default: warn
-#  logs:
-#    homeassistant.components.mqtt: debug
+  logs:
+    homeassistant.components.mqtt: debug
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -118,6 +118,8 @@ notify:
     platform: group
     services:
       - service: ios_kevin_iphone
+#  - name: NOTIFIER_NAME
+#    platform: ecobee
 
 ###
 ### Local network devices

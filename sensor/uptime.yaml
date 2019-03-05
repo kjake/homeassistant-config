@@ -1,2 +1,2 @@
-  - platform: uptime
-    unit_of_measurement: days
+- platform: uptime
+  unit_of_measurement: days

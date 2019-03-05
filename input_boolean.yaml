@@ -1,16 +1,23 @@
   house_guests:
     name: House Guests
     icon: mdi:airplane
+    initial: off
   home_occupied:
     name: Home Occupied
     icon: mdi:human-male-female
+    initial: on
   kevin_home:
     name: Kevin Home
     icon: mdi:human-male
+    initial: on
   andrea_home:
     name: Andrea Home
     icon: mdi:human-female
+    initial: on
   brian_school:
     name: Brian School
     icon: mdi:human-child
+    initial: on
+  node_red:
+    name: Node Red Watchdog
     initial: on
