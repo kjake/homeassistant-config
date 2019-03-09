@@ -12,6 +12,14 @@ homeassistant:
   time_zone: America/New_York
   # Customization file
   customize: !include customize.yaml
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 127.0.0.1
+        - ::1
+        - 192.168.0.0/24
+        - fd00::/8
 
 # Enables the frontend
 frontend:
@@ -27,8 +35,11 @@ person:
 # Logs!
 logger:
   default: warn
-  logs:
-    homeassistant.components.mqtt: debug
+#  logs:
+#    homeassistant.components.mqtt: debug
+#    homeassistant.components.discovery: debug
+#    homeassistant.components.homekit: debug
+#    homeassistant.components.homekit_controller: debug
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -45,6 +56,7 @@ recorder:
     domains:
       - sensor
       - switch
+      - cover
   exclude:
     domains:
      - weather
@@ -55,6 +67,24 @@ recorder:
     entities:
      - sensor.uptime
      - sensor.date_time
+     - sensor.dark_sky_temperature
+     - sensor.dark_sky_summary
+     - sensor.dark_sky_hourly_summary
+     - sensor.dark_sky_minutely_summary
+     - sensor.dark_sky_daily_summary
+     - sensor.dark_sky_apparent_temperature
+     - sensor.dark_sky_precip
+     - sensor.dark_sky_precip_probability
+     - sensor.dark_sky_precip_intensity
+     - sensor.dark_sky_humidity
+     - sensor.dark_sky_cloud_coverage
+     - sensor.dark_sky_nearest_storm_distance
+     - sensor.dark_sky_wind_speed
+     - sensor.dark_sky_wind_bearing
+     - sensor.dark_sky_ozone
+     - sensor.dark_sky_pressure
+     - sensor.dark_sky_dew_point
+     - sensor.dark_sky_visibility
 
 # Enables a map showing the location of tracked devices
 map:
@@ -77,11 +107,7 @@ http:
   cors_allowed_origins:
     - https://google.com
     - https://www.home-assistant.io
-  trusted_networks:
-    - 127.0.0.1
-    - ::1
-    - 192.168.1.0/24
-    - fd00::/8
+
 
 # Add left-hand menu iframes
 panel_iframe:
@@ -105,8 +131,8 @@ discovery:
     - apple_tv
     - roku
     - igd
-#  enable:
-#    - homekit
+  enable:
+    - homekit
 
 # Enable Zeroconf/Avahi/Bonjour
 # https://www.home-assistant.io/components/zeroconf/
@@ -118,6 +144,7 @@ notify:
     platform: group
     services:
       - service: ios_kevin_iphone
+      - service: ios_andreas_iphone_x
 #  - name: NOTIFIER_NAME
 #    platform: ecobee
 
@@ -184,6 +211,19 @@ alexa_media:
     - email: !secret alexa_email
       password: !secret alexa_password
       url: amazon.com
+      exclude_devices:
+      - "Spare Firestick"
+      - "Spare Firestick 2"
+      - "Spare Firestick 3"
+      - "Bedroom FireTV"
+      - "LivingRm FireTV"
+      - "Basement FireTV"
+      - "My Dash"
+      - "Burninator"
+      - "Andrea's Alexa Apps"
+      - "Andrea's 2nd Fire"
+      - "Kevin's Alexa Apps"
+      - "This Device"
 
     
 # Ecobee Integration
