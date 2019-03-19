@@ -6,28 +6,24 @@ resources:
   - type: module
     url: /local/mini-graph-card-bundle.js?v=0.3.0
   - type: module
-    url: /local/simple-weather-card.bundle.js?v=0.1.0
+    url: /local/simple-weather-card.bundle.js?v=0.2.0
 title: Home
 views:
   - badges: []
     cards:
-      - entity: weather.main_floor
-        name: at home
+      - entity: weather.dark_sky
+        name: ' '
         type: 'custom:simple-weather-card'
-      - entities:
-          - entity: input_boolean.house_guests
-          - entity: input_boolean.andrea_home
-          - entity: input_boolean.kevin_home
-          - entity: input_boolean.home_occupied
-        show_header_toggle: false
-        title: People Presence
-        type: entities
       - entities:
           - entity: scene.41101
           - entity: scene.48427
           - entity: scene.8286
           - entity: scene.5638
           - entity: scene.34860
+          - entity: cover.slider
+          - entity: cover.l_window
+          - entity: cover.picture_window
+          - entity: cover.r_window
         show_header_toggle: false
         title: Family Room Shades
         type: entities
@@ -38,6 +34,54 @@ views:
         title: Garage
         type: entities
       - entities:
+          - entity: input_boolean.brian_school
+        show_header_toggle: false
+        title: Automations
+        type: entities
+    icon: 'mdi:home'
+    path: home
+    title: Home
+  - badges: []
+    cards:
+      - cards:
+          - content: |
+              ## Lights
+            type: markdown
+          - cards:
+              - entity: switch.family_room_standing_lamp
+                font_size: 75
+                hold_action:
+                  action: more-info
+                line_width: 8
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+          - cards:
+              - entity: switch.front_exterior
+                font_size: 75
+                hold_action:
+                  action: more-info
+                line_width: 8
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+        type: vertical-stack
+    icon: 'mdi:lightbulb-on'
+    path: lighting
+    title: Lighting
+  - badges: []
+    cards:
+      - entities:
+          - entity: input_boolean.house_guests
+          - entity: input_boolean.andrea_home
+          - entity: input_boolean.kevin_home
+          - entity: input_boolean.home_occupied
+        show_header_toggle: false
+        title: People Presence
+        type: entities
+      - entities:
           - entity: binary_sensor.brian_bedroom_occupancy
           - entity: binary_sensor.family_room_occupancy
           - entity: binary_sensor.master_bedroom_occupancy
@@ -46,44 +90,9 @@ views:
         show_header_toggle: false
         title: Room Presence
         type: entities
-      - type: entities
-        entities:
-          - entity: input_boolean.brian_school
-        show_header_toggle: false
-        title: Automations
-    icon: 'mdi:home'
-    path: home
-    title: Home
-  - cards:
-      - type: vertical-stack
-        cards:
-          - type: markdown
-            content: |
-              ## Lights
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                font_size: 75
-                line_width: 8
-                entity: switch.family_room_standing_lamp
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                font_size: 75
-                line_width: 8
-                entity: switch.front_exterior
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
-    badges: []
-    icon: 'mdi:lightbulb-on'
-    path: lighting
-    title: Lighting
+    icon: 'mdi:map-marker'
+    path: presense
+    title: Presense
   - badges: []
     cards:
       - entity: climate.main_floor
@@ -97,24 +106,7 @@ views:
           - entity: sensor.brian_bedroom_temperature
         title: Climate
         type: 'custom:mini-graph-card'
-      - entities:
-          - entity: sensor.dark_sky_temperature
-          - entity: sensor.dark_sky_apparent_temperature
-          - entity: sensor.dark_sky_dew_point
-        title: Weather
-        type: 'custom:mini-graph-card'
-      - entities:
-          - entity: sun.sun
-          - entity: sensor.moon
-          - entity: sensor.dark_sky_minutely_summary
-          - entity: sensor.dark_sky_humidity
-          - entity: sensor.dark_sky_wind_speed
-          - entity: sensor.dark_sky_precip_probability
-          - entity: sensor.dark_sky_cloud_coverage
-        show_header_toggle: false
-        title: Weather
-        type: entities
-    icon: 'mdi:thermometer'
+    icon: 'mdi:air-conditioner'
     path: climate
     title: Climate
   - badges: []
