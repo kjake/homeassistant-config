@@ -2,4 +2,4 @@
 # https://github.com/pnbruckner/homeassistant-config#illuminance-sensor
 - platform: illuminance
   name: Illuminance
-  entity_id: sensor.dark_sky_icon
+  entity_id: weather.dark_sky

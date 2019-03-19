@@ -8,15 +8,15 @@
   - service: frontend.set_theme
     data:
       name: slate
-- id: '1551748395152'
-  alias: Restart NodeRED Watchdog
-  trigger:
-  - entity_id: sensor.node_red
-    from: OK
-    platform: state
-    to: unknown
-  condition: []
-  action:
-  - data:
-      addon: a0d7b954_nodered
-    service: hassio.addon_restart
+#- id: watch-node_red
+#  alias: Restart NodeRED Watchdog
+#  trigger:
+#  - entity_id: sensor.node_red
+#    from: OK
+#    platform: state
+#    to: unknown
+#  condition: []
+#  action:
+#  - data:
+#      addon: a0d7b954_nodered
+#    service: hassio.addon_restart

@@ -85,6 +85,7 @@ recorder:
      - sensor.dark_sky_pressure
      - sensor.dark_sky_dew_point
      - sensor.dark_sky_visibility
+     - sensor.moon
 
 # Enables a map showing the location of tracked devices
 map:
@@ -140,13 +141,15 @@ zeroconf:
 
 # Notification group setup
 notify:
-  - name: phones
-    platform: group
+  - platform: group
+    name: phones
     services:
       - service: ios_kevin_iphone
       - service: ios_andreas_iphone_x
-#  - name: NOTIFIER_NAME
-#    platform: ecobee
+  - platform: ecobee
+    name: ecobee
+  - platform: alexa_media
+    name: alexa_media
 
 ###
 ### Local network devices
@@ -231,6 +234,15 @@ alexa_media:
 # api.ecobee.com
 ecobee:
   api_key: !secret ecobee_key
+  
+# Darksky Integration
+# https://www.home-assistant.io/components/weather.darksky/
+# 
+weather:
+  - platform: darksky
+    api_key: !secret forecast_key
+    mode: daily
+
 
 ###
 ### Includes Section
